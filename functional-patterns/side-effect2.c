@@ -27,3 +27,6 @@ int main(int argc, char *argv[]) {
     fun_array[2] = bar;
     (fun_array[++m])(++m);
 }
+
+// Result is:
+//     i/++i = 1, Foo got 2
