@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ro.meetup.cpp.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ro.meetup.cpp.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: ro.meetup.cpp.dsl,
+ ro.meetup.cpp.dsl.services,
+ ro.meetup.cpp.dsl.dbDsl,
+ ro.meetup.cpp.dsl.dbDsl.impl,
+ ro.meetup.cpp.dsl.dbDsl.util,
+ ro.meetup.cpp.dsl.serializer,
+ ro.meetup.cpp.dsl.parser.antlr,
+ ro.meetup.cpp.dsl.parser.antlr.internal,
+ ro.meetup.cpp.dsl.validation,
+ ro.meetup.cpp.dsl.scoping,
+ ro.meetup.cpp.dsl.generator,
+ ro.meetup.cpp.dsl.formatting

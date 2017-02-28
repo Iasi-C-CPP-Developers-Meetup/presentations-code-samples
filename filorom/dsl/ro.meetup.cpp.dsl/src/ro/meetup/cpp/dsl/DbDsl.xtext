@@ -1,0 +1,38 @@
+grammar ro.meetup.cpp.dsl.DbDsl with org.eclipse.xtext.common.Terminals
+
+generate dbDsl "http://www.meetup.ro/cpp/dsl/DbDsl"
+
+
+Model:
+	'persons' ':' (persons+=Person*)
+	'meetings' ':' (meetings+=Meeting*)
+	;
+	
+Person:
+	 name=ID '{'
+	    firstName=ID
+	    lastName=ID 
+		birthDate=DATE
+		address=STRING
+		'}';
+
+Role:
+	'organizer' | 'member' | 'presenter' | 'guest' | 'moderator'
+;
+
+Participant:  person=[Person];
+
+Meeting: '{' 
+	date=DATE
+	'presentations' ':' presentations+=Presentation*
+	'participants' ':' participants+=[Person]*
+  '}'  
+;
+
+Presentation: '{'
+	title=STRING
+	presenters+=[Person]*
+	'}'
+;
+
+terminal DATE: INT '.' INT '.' INT;

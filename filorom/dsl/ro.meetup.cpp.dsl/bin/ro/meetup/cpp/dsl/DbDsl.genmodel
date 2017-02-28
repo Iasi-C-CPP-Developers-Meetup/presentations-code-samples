@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ro.meetup.cpp.dsl/src-gen" editDirectory="/ro.meetup.cpp.dsl.edit/src"
+    editorDirectory="/ro.meetup.cpp.dsl.editor/src" modelPluginID="ro.meetup.cpp.dsl"
+    forceOverwrite="true" modelName="DbDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="ro.meetup.cpp.dsl.edit"
+    editorPluginID="ro.meetup.cpp.dsl.editor" runtimeVersion="2.8">
+  <genPackages prefix="DbDsl" basePackage="ro.meetup.cpp.dsl" disposableProviderFactory="true"
+      ecorePackage="DbDsl.ecore#/">
+    <genClasses ecoreClass="DbDsl.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Model/persons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Model/meetings"/>
+    </genClasses>
+    <genClasses ecoreClass="DbDsl.ecore#//Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Person/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Person/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Person/lastName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Person/birthDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Person/address"/>
+    </genClasses>
+    <genClasses ecoreClass="DbDsl.ecore#//Participant">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Participant/person"/>
+    </genClasses>
+    <genClasses ecoreClass="DbDsl.ecore#//Meeting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Meeting/date"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Meeting/presentations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Meeting/participants"/>
+    </genClasses>
+    <genClasses ecoreClass="DbDsl.ecore#//Presentation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Presentation/title"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Presentation/presenters"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,30 @@
+persons :
+  filo_rom {
+	Florentin Picioroaga
+	30.07.1977
+	"Iasi"
+  }
+  
+  gabi {
+	Gabriel Grigore
+	1.08.1975
+	"Iasi"
+  }
+ 
+  claudiu  {
+	Claudiu Burdulea
+	1.08.1976
+	"Iasi"
+  }
+  
+meetings :
+  {
+	23.02.2017
+	presentations: 
+	{
+      "Domain Specific Languages and C++ Code Generation"
+      filo_rom
+	}
+	participants: filo_rom gabi
+  }
+ 
