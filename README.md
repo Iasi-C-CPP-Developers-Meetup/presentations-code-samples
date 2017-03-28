@@ -6,3 +6,4 @@
   * Code: [radugeorge/church](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/radugeorge/church)
 * [26.11.2016 - C++ multithreading in a functional world - Ovidiu Farauanu](http://www.slideshare.net/ovidiuf/functional-patterns-for-c-multithreading-c-dev-meetup-iasi) (presentation)
 * [24.02.2016 - C++ by Choice - Florentin Picioroaga](https://www.slideshare.net/ovidiuf/florentin-picioroaga-c-by-choice) (presentation)
+  * Code: [filorom/dsl](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/filorom/dsl)
