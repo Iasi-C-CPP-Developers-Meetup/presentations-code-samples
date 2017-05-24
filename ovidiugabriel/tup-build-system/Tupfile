@@ -1,0 +1,2 @@
+: foreach *.c |> gcc -Wall -c %f -o %o |> obj/%B.o
+: obj/*.o |> gcc obj/*.o -o %o |> hello
