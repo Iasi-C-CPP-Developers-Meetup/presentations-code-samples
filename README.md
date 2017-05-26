@@ -1,5 +1,7 @@
 # Presentations (and Code Samples)
 
+* [25.05.2017 - Monadic Computations in C++ 14](https://www.slideshare.net/ovidiuf/monadic-computations-in-c14) (presentation)
+  * Code: [radugeorge/monadic](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/radugeorge/monadic)
 * [23.02.2017 - Domain Specific Languages and C++ Code Generation - Florentin Picioroaga](https://www.slideshare.net/ovidiuf/domain-specific-languages-and-c-code-generation) (presentation)
   * Code: [filorom/dsl](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/filorom/dsl)
 * [24.11.2016 - Cap'n Proto - Razvan Rotari](http://www.slideshare.net/ovidiuf/capn-proto-c-developer-meetup-iasi)  (presentation)
