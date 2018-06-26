@@ -1,6 +1,6 @@
 # Presentations (and Code Samples)
 
-* [13.12.2017 - Distributed cache, bridging C++ to new technologies - Florentin Picioroaga](https://www.slideshare.net/ovidiuf/distributed-cache-bridging-c-to-new-technologies-hazelcast)
+* [13.12.2017 - Distributed cache, bridging C++ to new technologies - Florentin Picioroaga](https://www.slideshare.net/ovidiuf/distributed-cache-bridging-c-to-new-technologies-hazelcast) (presentation)
 
 * [25.05.2017 - Monadic Computations in C++ 14 - Radu Postelnicu](https://www.slideshare.net/ovidiuf/monadic-computations-in-c14) (presentation)
   * Code: [radugeorge/monadic](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/radugeorge/monadic)
