@@ -1,3 +1,9 @@
+# What we're about
+
+A source of industry and professional news from C/C++ and Rust community here in Iasi. A place to ask questions and to get them answered. A place of professional advancement. A place to find a buddy or a mentor when you need one. Welcome among us!
+
+[Iasi C/C++ Developers Meetup Group Page](https://www.meetup.com/iasi-c-cpp-developers-meetup/) | [Iasi C/C++ Developers Blog](https://iscpp.blogspot.com)
+
 # Presentations (and Code Samples)
 
 ## 2022
@@ -5,6 +11,7 @@
 ### November 10, 2022
 
 * [Interface Oxidation (How to interface C++ with Rust) - Razvan Rotari](https://www.slideshare.net/ovidiuf/interface-oxidation) (presentation)
+* [Back in Business with C++ -  Florentin Picioroaga](https://www.slideshare.net/ovidiuf/back-in-business-with-c) (presentation)
 
 ## 2020
 
