@@ -2,7 +2,7 @@
 
 A source of industry and professional news from C/C++ and Rust community here in Iasi. A place to ask questions and to get them answered. A place of professional advancement. A place to find a buddy or a mentor when you need one. Welcome among us!
 
-[Iasi C/C++ Developers Meetup Group Page](https://www.meetup.com/iasi-c-cpp-developers-meetup/) | [Iasi C/C++ Developers Blog](https://iscpp.blogspot.com)
+[Iasi C/C++ Developers Meetup Group Page](https://www.meetup.com/iasi-c-cpp-developers-meetup/) | [Iasi C/C++ Developers Blog](https://iscpp.blogspot.com) | [Telegram Channel](http://t.me/iscpp)
 
 # Presentations (and Code Samples)
 
