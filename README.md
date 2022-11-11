@@ -12,6 +12,7 @@
 
 * [Bind me if you can - Razvan Rotari, Cristian Neamtu](https://www.slideshare.net/ovidiuf/bind-me-if-you-can) (presentation)
   * Code: [razvanrotari/binding_experiment](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/razvanrotari/binding_experiment)
+* Optimize build time for legacy code with the Conan package manager - Florentin Picioroaga
 
 ## 2017
 
