@@ -32,6 +32,7 @@ A source of industry and professional news from C/C++ and Rust community here in
 
 * [Monadic Computations in C++ 14 - Radu Postelnicu](https://www.slideshare.net/ovidiuf/monadic-computations-in-c14) (presentation)
   * Code: [radugeorge/monadic](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/radugeorge/monadic)
+* Tup - a second generation build system - Ovidiu Farauanu (presentation)
 
 ### February 23, 2017
 
