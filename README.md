@@ -6,6 +6,13 @@ A source of industry and professional news from C/C++ and Rust community here in
 
 # Presentations (and Code Samples)
 
+## 2025
+
+### January 15, 2025
+
+* [Interfacing C/C++ with Python - Ovidiu Farauanu](https://www.slideshare.net/slideshow/interfacing-c-with-python-to-boost-your-legacy-apps-with-python-interfaces/274936559) (presentation)
+  * Code: [ovidiugabriel/cpp-python-bridge](https://github.com/Iasi-C-CPP-Developers-Meetup/presentations-code-samples/tree/master/ovidiugabriel/cpp-python-bridge)
+
 ## 2022
 
 ### November 10, 2022
@@ -51,4 +58,5 @@ A source of industry and professional news from C/C++ and Rust community here in
 ### February 24, 2016
 
 * [C++ by Choice - Florentin Picioroaga](https://www.slideshare.net/ovidiuf/florentin-picioroaga-c-by-choice) (presentation)
+* Effective Vim++
 
