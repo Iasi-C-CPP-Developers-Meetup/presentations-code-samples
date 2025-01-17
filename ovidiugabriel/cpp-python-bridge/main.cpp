@@ -4,9 +4,71 @@
 #include <Python.h>
 #include <iostream>
 
+class Simple {
+    PyObject* module;
+    PyObject* plus_func;
+
+public:
+    Simple();
+    long plus(long a, long b);
+    ~Simple() {
+        Py_DECREF(plus_func);
+        Py_DECREF(module);
+    }
+
+}; // class Simple
+
+Simple::Simple()
+{
+    if (!Py_IsInitialized()) {
+        // Initialize python access
+        Py_Initialize();
+    }
+
+    module = PyImport_ImportModule("simple");
+
+    if (!module) {
+        throw std::runtime_error("simple module is not loaded");
+    }
+
+    plus_func = PyObject_GetAttrString(module, "plus");
+}
+
+long Simple::plus(long a, long b)
+{
+    // Make sure the attribute is callable
+    if (!plus_func || !PyCallable_Check(plus_func)) {
+        throw std::runtime_error("plus() is not callable");
+    }
+
+    // Create a tuple to contain the function's args
+    PyObject* args = PyTuple_New(2);
+    PyTuple_SetItem(args, 0, PyLong_FromLong(a));
+    PyTuple_SetItem(args, 1, PyLong_FromLong(b));
+
+    // Execute the plus function in simple.py
+    PyObject* ret = PyObject_CallObject(plus_func, args);
+
+    long retVal = PyLong_AsLong(ret);
+
+    Py_DECREF(args);
+    Py_DECREF(ret);
+
+    return retVal;
+}
+
+
+
 /**
  * Requires libpython3.11.dll to run
  */
+int main(int argc, char const *argv[])
+{
+    Simple simple;
+    std::cout << simple.plus(4, 7) << std::endl;
+}
+
+#if 0
 int main(int argc, char const *argv[])
 {
     PyObject* module;
@@ -60,6 +122,8 @@ int main(int argc, char const *argv[])
                 // Convert the value to long and print
                 long retVal = PyLong_AsLong(ret);
                 std::cout << "Result: " << retVal << std::endl;
+
+                Py_DECREF(ret);
             }
         }
     }
@@ -71,3 +135,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+#endif
