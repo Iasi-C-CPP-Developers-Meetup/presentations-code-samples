@@ -1,0 +1,104 @@
+
+App Info: JustBuild ( Adaptive Just-in-time Build, Certify inside, Deploy outside ... Export ) ~ AJBCD
+Version : r250505
+(c) 2020-2025 Warm Zero, RC
+
+
+Usage: justbuild [options] [goals]
+
+Options:
+
+-C|--cd DIR
+  Change working directory to DIR now.
+
+--init
+  Initializes project config recursively.
+--init-abcd
+  Initializes project config recursively.
+  Uses project config 'abcd.conf' on initialization.
+  Shares project config with Abcd. [default]
+--init-justbuild
+  Initializes project config recursively.
+  Uses project config 'justbuild.conf' on initialization.
+  Abcd does not look for this filename.
+--iide|--info-ide
+  Displays information for an IDE or project generators.
+
+-j|--jobs number
+  Set the maximum concurrent jobs for this instance.
+--jn|--j0|--no-jobs
+  No parallel jobs.
+--jd|--jobs-default
+  [default] Jobs number is chosen depending on the CPU cores and OS.
+  This option resets to the default after the other jobs options.
+
+-r|--recursive
+  [default] Recurse into sub-projects.
+-.|--non-rec
+  Only this project.
+
+Options for generating wrapper *make* files:
+--gen-all
+  Uses all the usual generators, then stops.
+--gen-jake|--gen-jk
+  Generates optional jake files, then stops.
+--gen-make|--gen-mk
+  Generates optional make files, then stops.
+
+--bgc|--bgf|--bgp|--bgt
+  Background jobs variant.
+  --bgf: Safe variant, build rules are isolated.
+  --bgp: (b) Safe variant, isolated build rules. Faster by context.
+  --bgt: Fastest variant overall, common context for rules.
+         Ok when rules do not change working-directory and/or env-variables.
+  (E) The rest are reserved for testing in various environments.
+
+// Internal and debug flags.
+-D|--debug
+  (b) Extra debug info.
+--jwb|--jwe|--jweh ms
+  (E) Wait.
+
+--
+  Non-options from now on.
+-@ file
+  Read arguments from file.
+-v|--verbose
+  Verbose messages.
+-q|--quiet
+  Supress messages.
+-h|--help
+  Show this help.
+-V|--version
+  Show version.
+
+One-dash options are expanded: '-ab' becomes '-a' '-b'.
+
+(b) Basic, usual functionality was successfully tested.
+  The overall outcome may depend on the tool version/variant.
+(E) Highly Experimental.
+  Work In Progress.
+  OR At least one reliability requirement is not yet covered.
+
+--register
+  Show text to send for registering the application.
+--license
+  Show registered license.
+
+Goals are achieved using steps and subtasks.
+  The goals are executed in the order given on the command line.
+  The steps and subtasks for each goal are typically executed in parallel.
+  [default] all - when no goals are specified.
+Usual Goals:
+  all clean distclean
+Extra Goals:
+  clean-all: is 'clean' followed by 'all'
+  distclean-all: is 'distclean' followed by 'all'
+Extra aliases to 'clean-all':
+  rebuild reall
+Debug-only Goals:
+  SA SB SC SD SE: runs the corresponding step A,B,C,D or E.
+
+Environment variables: JUSTBUILD_ARGS is used as arguments.
+
+Demo version... Waiting ...
