@@ -1,0 +1,269 @@
+----------------------------------------
+# Configuration variables
+  new version: abcd ver r250408
+  old version: abcd ver v8.09
+
+* Added read-only variables:
+
+  ARCH_BIN_FILE        was  ARCH_BIN_NAME
+  PROJ_BIN_FILE        was  (none)
+  S_DEPLOY_SUBDIR_BIN  was  (none)
+
+* Added variables available at Compile & Link:
+
+  IN_PATH   was  IN_OBJECTS
+  IN_FILE   was  (none)
+  OUT_PATH  was  OUT_TARGET
+  OUT_FILE  was  (none)
+
+* Added variables:
+
+  LS_IDE_NEED_LIBS_HDR            was  (none)
+  LS_IDE_INC_DIRS_STD             was  (none)
+  LS_IDE_INC_DIRS_STD_OS_Linux    was  (none)
+  LS_IDE_INC_DIRS_STD_OS_Windows  was  (none)
+
+* Changed read-only variables:
+
+  ARCH_BIN_NAME  :  now without filename extension
+
+* Removed variables:
+
+  (none)  was  N_UPDATE_ON_CHANGE_GEN_FILE
+
+----------------------------------------
+# Configuration variables
+  new version: abcd ver v8.09
+  old version: abcd ver v8.08-r240909
+
+* Added read-only variables:
+
+  APP_INAME  was  (none)
+
+* Removed variables:
+
+  (none)  was  S_CACHE_DIR_BASE
+
+----------------------------------------
+# Configuration variables
+  new version: abc ver v8.00
+  old version: abc ver v5.10-r0919
+
+* Renamed variables.
+  Now the name prefix indicates how the variable is used.
+
+  CMD_AT_ARCH_BEGIN                 was  ARCH_RUN_BEGIN
+  CMD_AT_ARCH_DONE                  was  ARCH_RUN_DONE
+  CMD_AT_ARCH_POST_LINK             was  ARCH_RUN_POST_LINK
+  CMD_AT_PROJ_BEGIN                 was  PROJ_RUN_BEGIN
+  CMD_AT_PROJ_DONE                  was  PROJ_RUN_DONE
+  CMD_AT_TOP_BEGIN                  was  TOP_RUN_BEGIN
+  CMD_AT_TOP_DONE                   was  TOP_RUN_DONE
+  LS_ARCH                           was  ARCH_LIST
+  LS_COMPILE_FLAGS                  was  COMPILE_FLAGS
+  LS_COMPILE_FLAGS_ARCH_*           was  COMPILE_FLAGS_ARCH_*
+  LS_COMPILE_FLAGS_LANG_*           was  COMPILE_FLAGS_LANG_*
+  LS_COMPILE_FLAGS_OS_*             was  COMPILE_FLAGS_OS_*
+  LS_LINK_FLAGS                     was  LINK_FLAGS
+  LS_LINK_FLAGS_ARCH_*              was  LINK_FLAGS_ARCH_*
+  LS_LINK_FLAGS_LANG_*              was  LINK_FLAGS_LANG_*
+  LS_LINK_FLAGS_OS_*                was  LINK_FLAGS_OS_*
+  LS_NEED_LIBS                      was  NEED_LIBS
+  LS_NEED_LIBS_ARCH_*               was  NEED_LIBS_ARCH_*
+  LS_NEED_LIBS_HDR                  was  NEED_LIBS_HDR
+  LS_NEED_LIBS_HDR_ARCH_*           was  NEED_LIBS_HDR_ARCH_*
+  LS_NEED_LIBS_HDR_OS_*             was  NEED_LIBS_HDR_OS_*
+  LS_NEED_LIBS_OS_*                 was  NEED_LIBS_OS_*
+  LS_NEED_LIBS_STD                  was  NEED_LIBS_STD
+  LS_NEED_LIBS_STD_ARCH_*           was  NEED_LIBS_STD_ARCH_*
+  LS_NEED_LIBS_STD_OS_*             was  NEED_LIBS_STD_OS_*
+  LS_RESTORE_LINKS                  was  RESTORE_LINKS_LIST
+  LS_SKIP_DEPLOY_FOR_ARCH           was  SKIP_INSTALL_ARCH_LIST
+  LS_SKIP_DEPLOY_FOR_BIN_TYPE       was  SKIP_INSTALL_BIN_TYPE_LIST
+  N_BUILD_ON_NEWER_LIBS             was  BUILD_ON_NEWER_LIBS
+  N_BUILD_ON_NEWER_LIBS_SKIP_FILES  was  BUILD_ON_NEWER_LIBS_SKIP_FILES
+  N_GOAL_CLEAN_IS_DISTCLEAN         was  GOAL_CLEAN_IS_DISTCLEAN
+  N_PULL_SHLIB_AT_DEPLOY            was  PULL_SHLIB_AT_INST
+  N_PULL_SHLIB_AT_LINK              was  PULL_SHLIB_AT_LINK
+  N_SKIP_SCAN_NEED_BUILD            was  SKIP_SCAN_NEED_BUILD
+  N_UPDATE_ON_CHANGE_GEN_FILE       was  UPDATE_ON_CHANGE_GEN_FILE
+  PROJ_BIN_TYPE                     was  BIN_TYPE
+  PROJ_BIN_TYPE_ARCH_*              was  BIN_TYPE_ARCH_*
+  S_BACKUP_EXTENSION                was  BACKUP_EXTENSION
+  S_BUILD_DIR_BASE                  was  BUILD_DIR_PREFIX
+  S_BUILD_DIR_SUFFIX                was  BUILD_DIR_SUFFIX
+  S_CACHE_DIR_BASE                  was  CACHE_DIR
+  S_DEPLOY_DIR_BASE                 was  INSTALL_DIR_PREFIX
+  S_DEPLOY_DIR_SUFFIX               was  INSTALL_DIR_SUFFIX
+  S_DEPLOY_SUBDIR_DOC               was  INST_SUBDIR_DOC
+  S_DEPLOY_SUBDIR_EXE               was  INST_SUBDIR_EXE
+  S_DEPLOY_SUBDIR_INC               was  INST_SUBDIR_INC
+  S_DEPLOY_SUBDIR_LIB               was  INST_SUBDIR_LIB
+  S_DEP_EXTENSION                   was  SRC_DEP_EXTENSION
+  S_ECHO_PREFIX                     was  ECHO_PREFIX
+  S_ECHO_SUFFIX                     was  ECHO_SUFFIX
+  S_FLAG_LIB_INC_DIR_PREFIX         was  ONE_LIB_INC_DIR_PREFIX
+  S_FLAG_LIB_NAME_PREFIX            was  ONE_LIB_NAME_PREFIX
+  S_FLAG_SRC_DEFINE_PREFIX          was  ONE_SRC_DEFINE_PREFIX
+  S_FLAG_SRC_INC_DIR_PREFIX         was  ONE_SRC_INC_DIR_PREFIX
+  S_LANG                            was  SRC_LANG
+  TOOL_CMAKE_CMD                    was  CMD_CMAKE
+  TOOL_CMAKE_INC_FILE_1_START       was  CMAKE_INC_FILE_1_START
+  TOOL_CMAKE_INC_FILE_2_MAIN        was  CMAKE_INC_FILE_2_MAIN
+  TOOL_JAKE_CMD                     was  CMD_JAKE
+  TOOL_JAKE_INC_FILE_1_START        was  JAKE_INC_FILE_1_START
+  TOOL_JAKE_INC_FILE_2_MAIN         was  JAKE_INC_FILE_2_MAIN
+  TOOL_JAKE_MAKE_INC_FILE_1_START   was  JAKE_MAKE_INC_FILE_1_START
+  TOOL_JAKE_MAKE_INC_FILE_2_MAIN    was  JAKE_MAKE_INC_FILE_2_MAIN
+  TOOL_MAKE_CMD                     was  CMD_MAKE
+  TOOL_MAKE_INC_FILE_1_START        was  MAKE_INC_FILE_1_START
+  TOOL_MAKE_INC_FILE_2_MAIN         was  MAKE_INC_FILE_2_MAIN
+  TOOL_NINJA_CMD                    was  CMD_NINJA
+  TOOL_NINJA_EXEC_SHELL             was  NINJA_EXEC_SHELL
+  TOOL_NINJA_GOAL_NAME_DEL_LOG      was  NINJA_LOG_DEL_TARGET_NAME
+  TOOL_NINJA_INC_FILE_1_START       was  NINJA_INC_FILE_1_START
+  TOOL_NINJA_INC_FILE_2_MAIN        was  NINJA_INC_FILE_2_MAIN
+  TOOL_NINJA_LOG_DEL_CMD            was  NINJA_LOG_DEL_CMD
+  TXT_WANT_DEP_ORDER                was  WANT_DEP_ORDER
+  WP_BUILD_NOT                      was  BUILD_NOT
+  WP_BUILD_NOT_OS_*                 was  BUILD_NOT_OS_*
+  WP_IDE_NOT                        was  IDE_NOT
+  WP_PROJ_DIR_NOT                   was  PROJ_DIR_NOT
+  WP_PROJ_DIR_YES                   was  PROJ_DIR_YES
+  WP_PUB_NOT                        was  PUB_NOT
+  WP_SCAN_DIR_ADD                   was  SCAN_DIR_ADD
+  WP_SCAN_NOT                       was  SCAN_NOT
+  WP_SRC_DOC_PUB_YES                was  DOC_PUB_YES
+  WP_SRC_HDR_PUB_YES                was  HDR_PUB_YES
+  WP_SRC_HDR_YES                    was  HDR_YES
+  WP_SRC_INC_DIR_ADD                was  INC_DIR_ADD
+  WP_SRC_MAIN_NOT_ARCH_*            was  SRC_NOT_ARCH_*
+  WP_SRC_MAIN_YES                   was  SRC_YES
+  WP_SRC_MAIN_YES_ARCH_*            was  SRC_YES_ARCH_*
+  WP_SRC_NOT_BIN_LIB                was  SRC_NOT_BIN_LIB
+  WP_SRC_RES_YES                    was  RES_YES
+
+* Removed final variables.
+  Newer features have made them obsolete and unused.
+
+  (none)  was  COMPILE_FLAGS_OS
+  (none)  was  LINK_FLAGS_OS
+  (none)  was  NEED_LIBS_HDR_LANG_*
+  (none)  was  NEED_LIBS_HDR_OS
+  (none)  was  NEED_LIBS_LANG_*
+  (none)  was  NEED_LIBS_OS
+  (none)  was  NEED_LIBS_STD_LANG_*
+  (none)  was  NEED_LIBS_STD_OS
+  (none)  was  PATH_OS
+
+* Added variables.
+
+  N_BUILD_ON_SRC_ALL  was  (none)
+  N_DEPMAKE_LEVEL     was  (none)
+  S_OBJ_EXTENSION     was  (none)
+
+* Renamed generated variables.
+  These are generated and can be exported for use by a hook-script.
+
+  ARCH_BIN_NAME                     was  BIN_NAME
+  ARCH_BIN_TYPE                     was  BIN_TYPE
+  ARCH_BUILD_DIR                    was  BIN_BUILD_DIR
+  ARCH_NAME                         was  BIN_ARCH
+  TOOL_NAME                         was  MAKE_TYPE
+
+----------------------------------------
+# Configuration variables
+  new version: abc ver v5.10-r0919
+  old version: abc ver v5.08-r0811
+
+* Removed obsolete variables:
+  -  was  IDE_USE_ABS_OS_PATH
+  -  was  IDE_USE_IDE_FILES
+
+----------------------------------------
+# Configuration variables
+  new version: abc ver v5.08-r0811
+  old version: abc ver v4.00-r1007
+
+* New variables:
+  BUILD_NOT_OS_Linux   : allow to exclude sources for another OS
+  BUILD_NOT_OS_Windows : allow to exclude sources for another OS
+  NEED_LIBS_HDR* : allow to use header-only projects
+
+* Renamed some variables - mainly for naming consistency.
+
+  CMAKE_INC_FILE_1_START      was  CMAKE_INSERT_FILE
+  CMAKE_INC_FILE_2_MAIN       was  CMAKE_MAIN_INSERT_FILE
+  JAKE_INC_FILE_1_START       was  JAKE_INSERT_FILE
+  JAKE_INC_FILE_2_MAIN        was  JAKE_MAIN_INSERT_FILE
+  JAKE_MAKE_INC_FILE_1_START  was  -
+  JAKE_MAKE_INC_FILE_2_MAIN   was  -
+  MAKE_INC_FILE_1_START       was  MAKE_INSERT_FILE
+  MAKE_INC_FILE_2_MAIN        was  MAKE_MAIN_INSERT_FILE
+  NEED_LIBS                   was  LINK_LIBRARIES
+  NEED_LIBS_HDR               was  -
+  NEED_LIBS_STD               was  LINK_LIBRARIES_OS*
+  NINJA_INC_FILE_1_START      was  NINJA_INSERT_FILE
+  NINJA_INC_FILE_2_MAIN       was  NINJA_MAIN_INSERT_FILE
+  SKIP_INSTALL_ARCH_LIST      was  SKIP_INSTALL_ARCH
+
+* Removed variables with fixed meaning in the past:
+
+  (none)  was  CONF_PROJ_FILE_NAME
+
+* Extended variants for previous vars, unique value is chosen by context:
+  CMD_COMPILE_ARCH_*          was  -
+  CMD_COMPILE_LANG_*          was  -
+  CMD_LINK_EXE_ARCH_*         was  -
+  CMD_LINK_EXE_LANG_*         was  -
+  CMD_LINK_PHONY_ARCH_*       was  -
+  CMD_LINK_PHONY_LANG_*       was  -
+  CMD_LINK_SHARED_LIB_ARCH_*  was  -
+  CMD_LINK_SHARED_LIB_LANG_*  was  -
+  CMD_LINK_STATIC_LIB_ARCH_*  was  -
+  CMD_LINK_STATIC_LIB_LANG_*  was  -
+
+* Extended context for vars:
+  COMPILE_FLAGS_LANG_*
+  LINK_FLAGS_LANG_*
+  COMPILE_FLAGS_ARCH_*
+  LINK_FLAGS_ARCH_*
+  COMPILE_FLAGS_OS_*
+  LINK_FLAGS_OS_*
+
+* New vars with specific variants, unique value is chosen by context:
+
+  ONE_LIB_INC_DIR_PREFIX         was  -
+  ONE_LIB_INC_DIR_PREFIX_LANG_*  was  -
+  ONE_LIB_NAME_PREFIX            was  -
+  ONE_LIB_NAME_PREFIX_LANG_*     was  -
+  ONE_SRC_DEFINE_PREFIX          was  -
+  ONE_SRC_DEFINE_PREFIX_LANG_*   was  -
+  ONE_SRC_INC_DIR_PREFIX         was  -
+  ONE_SRC_INC_DIR_PREFIX_LANG_*  was  -
+
+* Renamed output files, to match variable names and for naming consistency.
+
+  (none)                  was  DEFINES-
+  LINK_FLAGS_ONLY_LIB-    was  LINK_LIBRARIES-
+  LINK_FLAGS_ONLY_NOLIB-  was  -
+  LINK_INC_DIRS-          was  LINK_DIRECTORIES-
+  LINK_OBJ_LIST-          was  LINK_OBJECTS-
+  NEED_LIBS-              was  -
+  NEED_LIBS_HDR-          was  -
+  SRC_INC_DIRS-           was  SRC_INCLUDES-
+
+----------------------------------------
+# Configuration variables
+  new version: abc ver v4.00-r1007
+  old version: abc ver v3.15-r0929
+
+* Renamed option vars (as usual, compatibility conf can be used)
+
+  GOAL_CLEAN_IS_DISTCLEAN  was  MAKE_CLEAN_IS_DISTCLEAN
+  LINK_LIBRARIES_OS        was  LINK_LIBRARIES_ADD
+
+* Added option vars, OS specific
+  (none)  was  LINK_LIBRARIES_OS_*
+
+----------------------------------------

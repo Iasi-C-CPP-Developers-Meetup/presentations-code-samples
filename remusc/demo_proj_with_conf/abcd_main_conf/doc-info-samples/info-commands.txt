@@ -1,0 +1,75 @@
+
+# Commands (cmds)
+
+## Commands and shell scripts used as Hooks
+
+Command type vars are evaluated once, at the end, just before use.
+  A command type variable can be used to call a script.
+
+## Internal commands
+
+Internal commands are used in the scope of the configuration files.
+
+`echo message`
+    Prints the message to stdout.
+
+`export VAR=value`
+`export [vars-list]`
+    Exports the given environment variables.
+
+`include path/to/file` :
+    Includes another configuration file.
+
+`-include path/to/file` :
+    Like `include`, but
+    it does not give any error if the file does not exist.
+
+`varsDump [vars-list]` :
+    Displays the values for the given variables.
+    e.g. `varsDump VAR_1 VAR_2*`
+          displays VAR_1, VAR_2, VAR_2_3
+          but does not display VAR_1_4
+
+`envVarsDump [vars-list]`
+    Displays the values for the given environment variables.
+
+`envVarsClearExcept [vars-list]`
+    Selectively removes environment variables.
+
+`varsVerifyObsolete`
+    Verify that all important variables were adapted to the latest version.
+    All variables used are checked.
+    For many (thousands) variables used, it may take some time.
+    It can be commented out when only current variables are used.
+
+`run [options] command [args]`
+    Runs the given command line.
+    Returns the command return code.
+    Options:
+      --rcc|--ret-code-change string_how
+        Replaces a specified return code with a new value.
+        The 'string_how' supports the following formats:
+          nrc=crc
+          nrc=*
+          nrc=crc,nrc2=crc2 - A comma-separated list.
+        'crc' stands for command return code.
+              It is a number or the '*' character used to match any number.
+        'nrc' stands for new return code.
+              It is a number.
+        When the command returns 'crc', the final code is 'nrc'.
+        The final code is not changed if its value is not in 'crc' list.
+        For duplicate 'crc' values, one of 'nrc' is used. Avoid them.
+        Eg. `run --rcc 1=23 --rcc 2=34 command`
+            OR `run --rcc 1=23,2=34 command`
+            When the command returns 12, the return code is 12.
+            When the command returns 23, the return code is 1.
+            When the command returns 34, the return code is 2.
+        Eg. `run --rcc 12=* command`
+            The return code is 12, regardless of what the command returns.
+
+`runOk command [args]`
+    Runs the given command line.
+    Returns success.
+    Equivalent to `run --rcc 0=* command [args]`.
+
+// EOF //

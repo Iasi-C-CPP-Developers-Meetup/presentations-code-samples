@@ -1,0 +1,6 @@
+#include "LibMain.hh"
+
+const char * strByLibMain(void)
+{
+    return "strByLibMain / EMB";
+}

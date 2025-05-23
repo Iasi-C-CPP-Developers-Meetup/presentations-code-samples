@@ -1,0 +1,243 @@
+
+# JustBuild
+
+This file describes features of JustBuild.
+These features were not previously possible in Abcd.
+
+Abcd can only prepare instructions in advance,
+  then it gives control to make* (Jake, Make, Ninja, CMake).
+
+JustBuild controls all the steps during the build (and test and so on).
+  It also runs the appropriate operating system commands
+  and does not need to use a make* tool.
+
+## JustBuild STEP* variables
+
+The steps are described directly in the configuration file:
+  "_justbuild.build-steps.conf"
+  Adapt it to your project(s).
+  That file can be also split it to multiple files ...
+Each steps Must either be defined in an active configuration file,
+  or disabled with '--'.
+This is to ensure that no steps have been accidentally
+  forgotten to be defined,
+  forgotten to be included,
+  overwritten with empty content,
+  etc.
+Note that commented lines are removed before a STEP* is processed.
+
+Each step can use:
+- OS commands,
+- usual internal commands or
+- internal functions.
+
+## Internal functions available in STEP* variables
+
+An internal function looks like this:
+  `someFunctionName() arg1 arg2 ...`
+The returned value can be assigned to a variable:
+  `VARIABLE = someFunctionName() arg1 arg2 ...`
+
+The "()" is a visual indication that this is a function,
+  and not an OS command,
+  nor any other internal command known to JustBuild or Abcd.
+
+These functions are available in STEP* variables,
+  but unknown in other contexts.
+
+## Internal functions list
+
+listItem()
+  Extract a list from a named container.
+  * Arg1: named container.
+  * Return: the list.
+  Eg. `LS_SRC = listItem() SRC_MAIN`
+
+Named containers can be thought of as internal containers for lists,
+  created according to WP_* variables.
+Named containers available:
+  - SRC_ALL_FOR_BUILD : All input files needed for the build.
+  - SRC_MAIN : Main source files.
+  - SRC_HDR  : Headers.
+  - SRC_RES  : Resource files.
+  - SRC_HDR_PUB : Public headers, to be included in the release.
+  - SRC_DOC_PUB : Document files, to be included in the release.
+  - PULL_SHLIB : (E) Shared-libraries needed by this project.
+        Each full path name is generated from dependencies.
+        Each item is expected to be a shared library
+          available at the time of use
+          in the standard deployment location.
+        Useful in a build session for launching executables
+          that require shared libraries.
+        Useful for packaging executables and libraries together.
+        Note that for chained dependencies, this list may not be complete.
+
+
+listPickWP()
+  Filters 1st argument.
+  * Arg1: Initial list.
+  * Arg2: Wildcard-Pattern for list-items to keep. "" means keep all.
+  * Arg3: Wildcard-Pattern for list-items to drop. "" means drop none.
+  * Return: the filtered list.
+  Eg. `LIST = listPickWP() "$LS_SRC" "$WP_YES" "$WP_NOT"`
+  Eg. `LIST = listPickWP() "$LS_SRC" ""        "$WP_NOT"`
+  Eg. `LIST = listPickWP() "$LS_SRC" "$WP_YES"`
+
+
+setContextProj()
+  Change the build context to current project.
+  The context ends either when a new context is set or at the end of the STEP*.
+  Context is set to PROJ at the beginning of these steps: A, D, E.
+  * Return: true on success
+  Eg. `setContextProj()`
+
+
+setContextArch()
+  Change the build context for a different ARCH.
+  The context ends either when a new context is set or at the end of the STEP*.
+  If the given name is not in LS_ARCH, this context is ignored.
+  Context is set to 1st ARCH at the beginning of these steps: B, C.
+  * Arg1: ARCH name.
+  * Return: true on success
+  Eg. `setContextArch() "test"`
+
+
+setContextBinType()
+  Overrides the output binary type for current context.
+  PROJ_BIN_TYPE_ARCH_* is used before this function is called.
+  * Arg1: binary type.
+  * Return: true on success
+  Eg. `setContextBinType() "exe"`
+
+
+skipContextForEmptyArgs()
+  If the arguments as a whole are empty (or just blank chars)
+    omit the rest of the commands
+    until another context is set.
+  Useful for phony binary output type.
+   Eg. project groups.
+  * Arg 1,2...: item1 item2 ...
+  * Return: true
+  Eg. `skipContextForEmptyArgs() $LS_EXE_TEST $LS_EXE_TEST_FAIL`
+  Note that "echo" lines are also ignored until a valid context is set.
+
+
+skipContextIfPassWP()
+  If the string matches the Wildcard-Pattern-Yes
+    and the string does not match the Wildcard-Pattern-Not
+    omit the rest of the commands
+    until another context is set.
+  * Arg 1: string
+  * Arg 2: Wildcard-Pattern-Yes, when empty the string pass
+  * Arg 3: (optional) Wildcard-Pattern-Not, when empty the string pass
+  * Return: true
+  Eg. `skipContextIfPassWP() $PROJ_BIN_TYPE "phony|phlib"`
+  Eg. `skipContextIfPassWP() $PROJ_BIN_TYPE "" "exe|*lib"`
+
+
+errorForEmptyArgs()
+  Only advance if the arguments as a whole are not empty (or just blank chars).
+  Useful to enforce non-empty data.
+   Eg. fail early if there is no input or output data.
+  * Arg 1,2...: item1 item2 ...
+  * Return: true for at least one non-empty item.
+  Eg. `errorForEmptyArgs() $LS_EXE_TEST $LS_EXE_TEST_FAIL`
+
+
+jobsCompile()
+  Runs a command for each input file.
+  Parallel jobs are used.
+  * Arg1: a list of compile commands for each source file
+  * Arg2: the list of source files
+  * Return: the list of object files
+  Eg. `LS_OBJ = jobsCompile() "$CMD_COMPILE" "$LS_SRC"`
+
+
+jobsLink()
+  Runs a command for all input files.
+  Waits for all background jobs to finish before launching the command.
+  * Arg1: a list of link commands for each object file
+  * Arg2: the list of object files
+  * Return: the output binary file
+  Eg. `S_BIN = jobsLink() "$CMD_LINK" "$LS_OBJ"`
+
+
+jobsCompileLink()
+  Runs a command for each input file.
+  Compile and link each source to a test executable.
+    It should be faster to compile and link directly.
+  The instructions in CMD_COMPILE_LINK can be set as desired.
+    Eg. use or omit intermediary object files.
+  Parallel jobs are used.
+  * Arg1: a list of compile-and-link commands for each object file
+  * Arg2: the list of source files
+  * Return: list of output binary files
+  Eg. `LS_BIN = jobsCompileLink() "$CMD_COMPILE_LINK" "$LS_SRC"`
+
+
+jobsRunEach()
+  Run each exe.
+  For tests designed to fail: use command-prefix to adapt the return codes.
+  If a job ends with an error, jobs waiting to start are dropped.
+  * Arg1: List of executables
+  * Arg 2,3...: (optional) command-line-prefix
+             which is prepended to each executable.
+  * Return: true when all jobs started with success,
+            false when some jobs failed before the last is started
+  Eg. `jobsRunEach() "$LS_EXE_TEST"`
+
+
+jobsWait()
+  Waits for all background jobs to finish.
+  * Return: true when all jobs returned success
+  Eg. `jobsWait()`
+
+
+setJobsMax()
+  Set the maximum number of jobs to run in parallel,
+    for next jobs*() functions.
+  At the end of sequential tests, use this function to restore parallel jobs.
+  Note that if too large a number is used,
+    the total time will not necessarily be lower.
+  * Arg1: number of jobs, >= 0.
+     0 means use a default based on number of CPU cores or command-line.
+     1 means no parallel jobs. Some tests may want to run alone.
+  * Return: false for negative number
+  Eg. `setJobsMax() 16`
+
+
+copyFilesToDirs()
+  Copy file-list to dir-list.
+    It does nothing when file-list is empty.
+    Dir-list must not be empty.
+  Base dir for a relative path is PROJ_DIR.
+  * Arg1: file-list
+  * Arg2: dir-list
+  * Return: true on success
+  Eg. `copyFilesToDirs() "$LS_HDR_PUB" "$S_DEPLOY_DIR/$S_DEPLOY_SUBDIR_INC"`
+
+
+copyExistingFilesToDirs()
+  Copy file-list to dir-list.
+    It does nothing when file-list is empty.
+    Silently ignores source files that do not exist.
+    Dir-list must not be empty.
+  Base dir for a relative path is PROJ_DIR.
+  * Arg1: file-list
+  * Arg2: dir-list
+  * Return: true on success
+  Eg. `copyExistingFilesToDirs() "$LS_DATA_FILES" "$COLLECT_DIR"`
+
+
+copyBinFilesToDirs()
+  Copy a file-list to dir-list.
+    It does nothing when PROJ_BIN_TYPE is a phony type.
+    Dir-list must not be empty.
+  Base dir for a relative path is the main ARCH build dir.
+  * Arg1: file-list
+  * Arg2: dir-list
+  * Return: true on success
+  Eg. `copyBinFilesToDirs() "$PROJ_BIN_FILE" "$S_DEPLOY_DIR/$S_DEPLOY_SUBDIR_BIN"`
+
+
+// EOF //

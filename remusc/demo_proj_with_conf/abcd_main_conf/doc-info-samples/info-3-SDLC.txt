@@ -1,0 +1,97 @@
+# Product Development Cycle
+
+This is an adjusted example with ABCDE process
+  applied with Abcd on quite a few products.
+( And it works as intended from years. )
+
+It may be useful to preview the capabilities of Abcd:
+* How much Time is saved.
+* How much the Quality increases over time.
+* What can be controlled and automatized.
+* It allows the humans to focus on product development,
+  because the used tools (and how are used) are unforgiving like a compiler,
+  and this alone shrinks the daily/weekly to-consider list.
+* Because of the same tools and notifications from them,
+  the learning curve for beginners is smaller.
+  Learn as you go.
+Now, to feel the real benefits - one have to try.
+
+----------
+The development cycle with Abcd briefly looks like this (for a developer):
+`abcd` # once
+_DO_
+  Edit, make changes in sub-projects ... fix errors ...
+  `make`
+  Note: the build system uses parallel jobs that are updated when necessary.
+_WHILE_ (not-done)
+
+----------
+The development cycle with Abcd might look broadly like this:
+`abcd` # once
+_DO_
+  Edit, make changes in sub-projects ... fix errors ...
+  * edit source files
+    * edit UIT in-place test code
+  * fix errors/warnings from tools and tests introduced in defined steps
+  * add a new executable-project
+  * add a new library-project & reference it
+  * move a project
+  * rename a project & rename the library reference as usual
+    * intentionally the library reference is not updated automatically
+      to keep the projects under control
+  `make`
+  Note: the build system uses parallel jobs that are updated when necessary.
+  ( when Abcd Main Config and bin-hooks are already properly prepared )
+  * check code conventions
+  * prettify code
+  * run UIT tests
+  * run coverage tests
+  * build documentation
+    * check documentation
+  * postponed checks, time consuming but still important
+    * send events to other test-machines to flash hardware & launch tests
+    * check code & interdependencies across projects
+    * run suite integration tests
+    * run suite verification tests
+    * run performance tests
+    * check requirements coverage
+    * collect results
+    * make reports
+      * publish the reports at the chosen location
+  * last chance to advance to Deploy and/or Export steps
+  * start Deploy-phase
+    * collect results from the other machines
+    * make reports for management
+      * publish the reports at the chosen location
+  * send events when the whole project group is marked ready
+    * send emails
+  * start Export-phase
+_WHILE_ (not-done)
+
+Note that if a step fails for a project:
+* next steps are not done
+  * projects that depend on this project will not be made
+* cannot advance to Deploy/Export phases
+
+Note that steps can be customized on/off per machine role.
+* on developer's computer:
+  * some steps can be skipped to allow for a fast development cycle
+  * some steps are mandatory, to enforce quality early
+  * requirement coverage can be switched on/off
+  * reports can be switched on/off
+* on product-control machines:
+  * build is not desired, to keep the user test environment clean
+  * automated hardware tests are active
+* on overall-product machines:
+  * requirement coverage is always on
+  * reports are always on
+
+Human reviews are an important part of the development process.
+These are inserted at the right points.
+e.g.
+* Developers can still make reviews on branches.
+  When review passes, a switch can mark the new changes ready for the product.
+* Deployment-phase can send an event for review.
+  When review passes, a switch will allow to continue.
+
+--

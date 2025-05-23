@@ -1,0 +1,65 @@
+
+# Intro - start here
+
+The base directory contains a sample configuration for Abcd Main Config directory.
+* It was designed to demonstrate Abcd's most important capabilities.
+* Inline comments also serve as documentation.
+
+How it is used:
+* Projects inherit this configuration, then select specific parts to use.
+* Projects need only establish what differs from the Main Configuration.
+* The order in which variables are evaluated within other variables is important.
+
+Your actual setup can be much simpler or more complex.
+* There can be all-in-one file or the config can be split to even more files.
+* Files can be included by using a variable name.
+
+Build environment for this config:
+* Linux:
+  * gcc, g++
+  * coreutils
+* Windows:
+  * gcc for Windows with g++ and std libs
+  * coreutils / git for Windows / msys2
+
+--------------------
+
+## Global Init:
+* Adapt Abcd Main Config files to your needs, for all projects.
+  In fact, several Main Configurations are possible, using different locations.
+  Use your compiler and your selection of build flags.
+  This step actually is not part of local project setup.
+
+## Init for a project:
+* Create `abcd.conf` in project's base directory.
+  Specify what differs from the main, global configuration.
+* Once: run `abcd` in this directory.
+  Alternative: run `abcd --help` and pick a generator.
+
+Notes:
+* "make" is stable.
+* "ninja" is usually faster than "make" and should have been stable.
+  However, sometimes ninja cache must be manually cleared by the user.
+  This need-user-intervention is the main reason for "(e)experimental" tag.
+  With cache cleared, ninja build time is near make build time.
+* "cmake" is a bit slower overall.
+  Its reliability highly depends on:
+  version, how it was installed and additional cmake files.
+  Reliability may be more important than its advantages.
+  However the user decides what it is better.
+
+## Steps for every build:
+* There are NO special steps for `abcd`, really.
+  Just build as usual.
+  Run `jake` or `make` or `ninja` or `cmake`.
+* When files are added/removed/changed,
+  build actions automatically adapt to these changes.
+* For some changes in the project structure `distclean` is required,
+  especially when sub-projects are removed.
+  For the user to have a chance to detect disk/LAN issues,
+  clean/distclean were not automatized.
+  Rationale:
+  - Partial delivery is not allowed.
+  - Either everything is ok (including tests, coverage, etc.), either not.
+
+--------------------

@@ -1,0 +1,82 @@
+
+# Customize Abcd main config directory
+  # for your coding style and your projects
+
+1. Recommended at start.
+  Read the comments in each Abcd main config file.
+  Make changes for all projects in small steps and test each step.
+
+2. Recommended for special projects.
+  Add your changes, what is different from the default,
+    to each project in its `abcd*.conf`.
+  Note that in this way the chosen project settings will remain fixed,
+    regardless of the changes in the main onfig files.
+  You may what this behavior,
+    or you may want a special ARCH for a set of projects.
+
+3. Advanced usage.
+  Use a different set of config files, and so different defaults,
+    for groups of projects.
+  However, with this power comes the responsability to know,
+    for each project,
+    which is its main configuration and how it is used.
+
+----------------------------------------
+
+Here are some quick examples.
+
+--------------------
+
+Change the language for all projects:
+  S_LANG  = "C"   # to use the C language tool chain
+  S_LANG  = "CPP" # to use the C++ language tool chain
+  S_LANG  = "CPM" # to use the C+- language tool chain
+
+--------------------
+
+Add another compilable language (e.g. GoLang, Rust, Assembler, Java):
+  S_LANG  = "NEW_LANG"
+
+For "NEW_LANG" follow these steps:
+* Search (case-sensitive, without quotes) in main config files for "CPP".
+  * Duplicate to your own language label. In this example "NEW_LANG".
+* Adjust as necessary:
+  * Compiler & linker flags.
+  * Command lines for each tool and each build/test step.
+  * Where a command/step is not required, set it to empty string "".
+* Search (case-insensitive, without quotes) in main config files
+  for "*.cpp" and "*.hpp".
+  * Add the patterns used for the source file names.
+* Add/Change your language-checker tools in the right hook-script.
+* Add/Change your test launcher & report tools in the right hook-script.
+
+Note:
+  This name is symbolic. It should have meaning for humans.
+  With proper Abcd config, "ASM" can be used for "C++",
+    even if it means Assembler for humans.
+  It is just a name for Abcd.
+  It should be chosen better for the readers.
+
+--------------------
+
+Change the language for one specific project.
+* Add to `abcd*.conf`
+  S_LANG  = "C"   # to use the C language tool chain
+
+This project will be build with "C" rules,
+  regardless of the default value "CPP" or "C".
+
+--------------------
+
+Change the compiler suite for all projects:
+  _USE_COMPILER_SUITE = "clang"
+  _USE_COMPILER_SUITE = "gcc"
+
+Note:
+  This name is symbolic. It should have meaning for humans.
+  With proper config, "Lisp" can be used for "C++" compiler & linker,
+    even if it means another language for humans.
+  It is just a name for Abcd.
+  It should be chosen better for the readers.
+
+--------------------

@@ -1,0 +1,3 @@
+# inc ninja 2-main >>
+builddir = $PROJ_BUILD_DIR
+# inc ninja 2-main <<

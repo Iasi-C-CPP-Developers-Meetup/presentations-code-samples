@@ -1,0 +1,96 @@
+
+# Projects
+
+Each project and its sub-projects (if there are any) are considered a "project".
+* The build system treats all projects the same way.
+  The build steps are the same.
+* If the build succeeds for a project, the build output should be the same
+  regardless of whether that project was a top-project or a sub-project
+  during different build sessions.
+* There is one notable addition, though.
+
+The 'top-project' is the one from which the build is launched.
+* It is unique during this build session for all projects involved.
+  * A sub-project cannot be top-project while building its own sub-projects.
+* All sub-projects are built before it, in the order dictated by dependencies.
+* This top-project is the last one built.
+
+For the top-project, additional optional steps are available.
+Their role is to:
+* Notify the user: Where the build session starts.
+* Customize the environment for all projects before starting.
+* Notify the user: How the build session ended for all projects.
+* Prepare reports and data for the next SDLC phase or step.
+
+Independently,
+  each project can send notifications from any step,
+  depending on how the user wants and configures the build system.
+
+Eg. 1
+  demo_proj_with_conf/
+  ├── demo_basic_hello_group/   // build launched here
+  │   ├── demo_basic_AppOnly/
+  │   ├── demo_basic_AppWithLibs/
+  │   ├── demo_basic_LibHdrOnly/
+  │   └── demo_basic_LibUsual/
+  ├── demo_complex_group/
+  │   └── ...
+  ├── demo_complex_group_Ext_1/
+  └── demo_complex_group_Ext_2/
+
+  When build starts in 'demo_basic_hello_group/':
+  * The top-project is 'demo_basic_hello_group'
+  * Its sub-projects are:
+    'demo_basic_AppOnly'
+    'demo_basic_AppWithLibs'
+    'demo_basic_LibHdrOnly'
+    'demo_basic_LibUsual'
+  * Each sub-project is built, then the top-project is built.
+
+Eg. 2
+  demo_proj_with_conf/          // build launched here
+  ├── demo_basic_hello_group/
+  │   ├── demo_basic_AppOnly/
+  │   ├── demo_basic_AppWithLibs/
+  │   ├── demo_basic_LibHdrOnly/
+  │   └── demo_basic_LibUsual/
+  ├── demo_complex_group/
+  │   └── ...
+  ├── demo_complex_group_Ext_1/
+  └── demo_complex_group_Ext_2/
+
+  When build starts in 'demo_proj_with_conf/':
+  * The top-project is 'demo_proj_with_conf'
+  * Its sub-projects are:
+    'demo_basic_hello_group'
+    'demo_complex_group'
+    'demo_complex_group_Ext_1'
+    'demo_complex_group_Ext_2'
+  * 'demo_basic_AppOnly' is a sub-project of 'demo_basic_hello_group'
+    and it is unknown to demo_proj_with_conf
+  * Each sub-project is built, then the top-project is built.
+  * While 'demo_basic_hello_group' is build, it is Not considered top-project.
+
+Eg. 3
+  demo_proj_with_conf/
+  ├── demo_basic_hello_group/
+  │   ├── demo_basic_AppOnly/   // build launched here
+  │   ├── demo_basic_AppWithLibs/
+  │   ├── demo_basic_LibHdrOnly/
+  │   └── demo_basic_LibUsual/
+  ├── demo_complex_group/
+  │   └── ...
+  ├── demo_complex_group_Ext_1/
+  └── demo_complex_group_Ext_2/
+
+  When build starts in 'demo_basic_AppOnly/':
+  * The top-project is 'demo_basic_AppOnly'
+  * There are no sub-projects.
+
+In all of these examples above, assuming they all succeeded:
+* The build output for 'demo_basic_AppOnly' is the same.
+* User notification messages may differ,
+  because they are sent from different top-project
+  and at different points in time.
+
+// EOF //
